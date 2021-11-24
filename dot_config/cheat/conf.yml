@@ -1,0 +1,25 @@
+---
+# The editor to use with 'cheat -e <sheet>'. Defaults to $EDITOR or $VISUAL.
+editor: code
+
+# Should 'cheat' always colorize output?
+colorize: true
+
+# Options are available here: https://github.com/alecthomas/chroma/tree/master/styles
+style: nord
+
+# One of: "terminal", "terminal256", "terminal16m"
+formatter: terminal16m
+
+# Through which pager should output be piped? (Unset this key for no pager.)
+pager: less -FRX
+
+cheatpaths:
+  # - name: community
+  #   path: ~/.config/cheat/cheatsheets/community
+  #   tags: [community]
+  #   readonly: true
+  - name: personal
+    path: ~/Projects/cheatsheets
+    tags: [personal]
+    readonly: false
