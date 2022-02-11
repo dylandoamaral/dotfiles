@@ -3,7 +3,7 @@
 	email = do.amaral.dylan@gmail.com
 
 [pull]
-	rebase = true
+	rebase = false
 
 [alias]
 	# from trevor bramble https://twitter.com/TrevorBramble/status/774292970681937920
