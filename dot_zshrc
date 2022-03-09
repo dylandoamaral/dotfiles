@@ -80,8 +80,8 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(
 	autojump
 	copybuffer
-	copydir
 	copyfile
+	copypath
 	git
 	sudo
 	web-search
@@ -116,6 +116,10 @@ alias     ch="code . && exit"
 alias  idea="open -na 'IntelliJ IDEA.app' --args './' && exit"
 alias reload="exec zsh"
 alias  zshrc="code ~/.zshrc"
+
+# Init jenv
+eval "$(jenv init -)"
+export PATH="$HOME/.jenv/bin:$PATH"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
