@@ -7,7 +7,7 @@
 
 [alias]
 	# from trevor bramble https://twitter.com/TrevorBramble/status/774292970681937920
-	alias=!git config -l | grep ^alias | cut -c 7- | sort
+	alias = !git config -l | grep ^alias | cut -c 7- | sort
 
 	# View abbreviated SHA, description, and history graph of the latest 20 commits
 	logs = log --pretty=oneline -n 20 --graph --abbrev-commit
@@ -29,3 +29,6 @@
 
 	# Remove last commit
 	undo = !git reset --soft HEAD~1
+
+	# Git commit using the branch name
+	os = "!git branch --show-current | sed 's|/|: |g' | sed 's|-| |g' | git commit -F -"
