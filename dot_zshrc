@@ -112,11 +112,22 @@ source $ZSH/oh-my-zsh.sh
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-alias     ch="code . && exit"
-alias   idea="open -na 'IntelliJ IDEA.app' --args './' && exit"
-alias    gos="git os"
-alias reload="exec zsh"
-alias  zshrc="code ~/.zshrc"
+alias          ch="code . && exit"
+alias        idea="open -na 'IntelliJ IDEA.app' --args './' && exit"
+alias         gos="git os"
+alias      reload="exec zsh"
+alias       zshrc="code ~/.zshrc"
+
+## Unquote a string.
+alias     unquote="tr -d '\"'"
+
+## Retrieve the github token from bitwarden or use the already loaded one.
+alias     ghtoken="echo $GITHUB_TOKEN || bw get password 'Github Token'"
+alias    eghtoken="export GITHUB_TOKEN=$(ghtoken)"
+
+## Retrieve the vault token from vault or use the already loaded one.
+alias  vaulttoken="echo $VAULT_TOKEN || curl -s --request POST --data '{\"token\": \"$(ghtoken)\"}' https://vault.univalence.io/v1/auth/github/login | jq '.auth.client_token' | unquote"
+alias evaulttoken="export VAULT_TOKEN=$(vaulttoken)"
 
 # Init jenv
 eval "$(jenv init -)"
