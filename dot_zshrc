@@ -119,15 +119,15 @@ alias      reload="exec zsh"
 alias       zshrc="code ~/.zshrc"
 
 ## Unquote a string.
-alias     unquote="tr -d '\"'"
+alias unquote="tr -d '\"'"
 
 ## Retrieve the github token from bitwarden or use the already loaded one.
-alias     ghtoken="echo $GITHUB_TOKEN || bw get password 'Github Token'"
-alias    eghtoken="export GITHUB_TOKEN=$(ghtoken)"
+ghtoken()  { (( ${+GITHUB_TOKEN} )) && echo $GITHUB_TOKEN || bw get password 'Github Token' }
+eghtoken() { export GITHUB_TOKEN=$(ghtoken) }
 
 ## Retrieve the vault token from vault or use the already loaded one.
-alias  vaulttoken="echo $VAULT_TOKEN || curl -s --request POST --data '{\"token\": \"$(ghtoken)\"}' https://vault.univalence.io/v1/auth/github/login | jq '.auth.client_token' | unquote"
-alias evaulttoken="export VAULT_TOKEN=$(vaulttoken)"
+vaulttoken()  { (( ${+VAULT_TOKEN} )) && echo $VAULT_TOKEN || curl -s --request POST --data "{\"token\": \"$(ghtoken)\"}" https://vault.univalence.io/v1/auth/github/login | jq '.auth.client_token' | unquote }
+evaulttoken() { export VAULT_TOKEN=$(vaulttoken) }
 
 # Init jenv
 eval "$(jenv init -)"
